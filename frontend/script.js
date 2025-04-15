@@ -4,10 +4,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   port = prompt(
     'Masukkan port Back-End \nPort dapat dilihat pada file index.js pada bagian "app.listen" \n\nNilai default-nya adalah 5000'
   );
-  getUser();
-});
-
-document.addEventListener("DOMContentLoaded", () => {
   getEnergyData();
 });
 
