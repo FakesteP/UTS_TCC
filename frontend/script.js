@@ -1,3 +1,12 @@
+let port = 5000;
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  port = prompt(
+    'Masukkan port Back-End \nPort dapat dilihat pada file index.js pada bagian "app.listen" \n\nNilai default-nya adalah 5000'
+  );
+  getUser();
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   getEnergyData();
 });
@@ -21,7 +30,7 @@ document.getElementById("energy-form").addEventListener("submit", function (e) {
 // Fungsi Menampilkan Data dari Backend
 async function getEnergyData() {
   try {
-    const { data } = await axios.get(`http://localhost:5000/electros`);
+    const { data } = await axios.get(`http://localhost:${port}/electros`);
 
     const tableBody = document.getElementById("energyTableBody");
     tableBody.innerHTML = "";
@@ -57,7 +66,7 @@ async function getEnergyData() {
 // Fungsi Menambahkan Data
 function addEnergyData(device_name, energy_consumption) {
   axios
-    .post(`http://localhost:5000/create-electros`, {
+    .post(`http://localhost:${port}/create-electros`, {
       device_name,
       energy_consumption,
     })
@@ -71,7 +80,7 @@ function addEnergyData(device_name, energy_consumption) {
 // Fungsi Mengupdate Data
 function updateEnergyData(id, device_name, energy_consumption) {
   axios
-    .put(`http://localhost:5000/update-electros/${id}`, {
+    .put(`http://localhost:${port}/update-electros/${id}`, {
       device_name,
       energy_consumption,
     })
@@ -85,7 +94,7 @@ function updateEnergyData(id, device_name, energy_consumption) {
 // Fungsi Menghapus Data
 function deleteEnergyData(id) {
   axios
-    .delete(`http://localhost:5000/delete-electros/${id}`)
+    .delete(`http://localhost:${port}/delete-electros/${id}`)
     .then(() => getEnergyData())
     .catch((error) => console.error("Error deleting data:", error));
 }
